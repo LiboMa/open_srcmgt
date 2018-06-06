@@ -1,0 +1,67 @@
+$def with(entries,title=False, status=False)
+
+$if title:
+    <font id="warn">$title</font>
+    <div id=show_tag>
+      <form name="gen_tag" action="" method="POST" onsubmit="return validateForm()">                                                                              
+        <label for="tag_numbers">tag_numbers(*):</label> <input name="tag_numbers" type='text' onkeypress="if(this.value.match(/\D/)) this.value=this.value.replace(/\D/g,'')" onkeyup="if(this.value.match(/\D/)) this.value=this.value.replace(/\D/g,'')">
+        <label for="tag_comment">tag_comment</label> <input name="comment" type='text'>
+        <button class="button" type="submit">OK</button>
+        </form>
+      </div>
+
+<script type="text/javascript" src="./static/js/tags.js"></script>
+<script type="text/javascript" src="./static/js/js_editor/jquery.js"></script>
+<script type="text/javascript" src="./static/js/js_editor/jquery.dataTables.js"></script>
+<script type="text/javascript" src="./static/js/table_style.js"></script>
+<script type="text/javascript" src="./static/js/jquery.formautofill.js"></script>
+<script type="text/javascript" src="./static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./static/js/jsedit.js"></script>
+<script type="text/javascript" src="./static/js/jsadd.js"></script>
+<link rel="stylesheet" type="text/css" href="./static/css/jquery.dataTables.css" />
+<link href="./static/css/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./static/css/dialog.css" />
+
+<div class="table-component">
+  <div class="table-main-container">
+
+    <div class="table-title">
+      <div class="table-title-header">
+         <div class="table-title-text">Tag List</div>
+         <div class="table-title-toolbar"><span class="table-toobar-item-icon"></span></div>
+      </div>
+    </div>
+
+  <div class="table-body">
+        <table class="display table table-bordered table-hover table-striped" id='tag_table'>
+          <tr>
+            <th class=edit_th width="10%" id="tagname">tagname</th>
+            <th class=edit_th id="comment">comment</th>
+            <th class=edit_th id="status">status</th>
+            <th class=edit_th width="10%" id="assignedby">assignedby</th>
+            <th class=edit_th id="update_on">update_on</th>
+        $if status:
+            <th id="th_edit">EDIT</th>
+          </tr>
+
+        $for entry in entries:
+          <tr class="edit_tr" id='row$entry.id'>
+            <td class="edit_td" id="td_tagname_$entry.id"><span id="tagname_$entry.id" class='text'>$entry.tagname</span>
+            </td>
+            <td class="edit_td" id="td_comment_$entry.id"><span id="comment_$entry.id" class='text'>$entry.comment</span>
+            </td>
+            <td class="edit_td" id="td_status_$entry.id"><span id="status_$entry.id" class='text'>$entry.status</span>
+            </td>
+            <td class="edit_td" id="td_assignedby_$entry.id"><span id="assignedby_$entry.id" class='text'>$entry.assignedby</span>
+            </td>
+            <td class="edit_td" id="td_update_on_$entry.id"><span id="update_on_$entry.id" class='text'>$entry.update_on</span></td>
+            $if status:
+                 <td id="edit_$entry.id">
+                  <a class='btn btn-default text' href="#" id="button_del_$entry.id" onclick="old_delete_entry('$entry.id','./delete_capacitytag','./ori_show_capacitytag');return false;">Delete</a>
+                </td>
+          </tr>
+        </table>
+   </div>
+
+   </div>
+</div>

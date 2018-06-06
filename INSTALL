@@ -1,0 +1,59 @@
+This doc is used to give the brief introduction of sourcemgt install.
+
+Reference link: http://blog.blankyao.com/story/solve-python_egg_cache.html
+
+Requeirements:
+
+    apache 2.2+
+    mod_wscgi
+    python 2.5 +
+    MySQL 5.0 +
+#######################
+
+
+
+### Configurations of Apache for sourcemgt
+### sourcemgt.conf
+
+listen 8080
+
+<VirtualHost *:8080>
+    ServerAdmin malibo8407@gmail.com
+    DocumentRoot /opt/test/sourcemgt
+    ServerName $SERVERNAME
+    ErrorLog logs/error_log
+    CustomLog logs/access_log combined
+
+WSGIScriptAlias / /opt/test/sourcemgt/itinfo.py/
+AddType text/html .py
+Alias /static /opt/test/sourcemgt/static/
+
+<Directory /opt/test/sourcemgt>
+      Options -Indexes
+      Order allow,deny
+      Allow from all
+</Directory>
+
+</VirtualHost>
+
+##########
+
+#### .htaccess ######
+
+<Files itinfo.py>
+
+    SetHandler wsgi-script
+    Options ExecCGI FollowSymLinks
+
+</Files>
+
+######################
+
+######### installation ############
+
+apt-get install mysql-server 
+apt-get install pip
+pip install web.py
+pip install MySQLdb
+apt-get install apache2
+apt-get install libapache2-mod_wsgi

@@ -1,0 +1,45 @@
+
+.ui-dialog input{
+    text-align: center;
+    background: #ffffcc;
+    border-radius:3px;
+}
+
+.ui-widget-header {
+border: 1px solid #333333;
+background: #1F96F7;
+color: #ffffff;
+font-weight: bold;}
+
+.ui-widget-content {
+border: 1px solid #666666;
+background: #ffffff;
+color: #000000;}
+
+
+.ui-button-text-only .ui-button-text {
+
+    padding:0;
+}
+
+.ui-dialog .ui-dialog-buttonpane button { margin: .5em .4em .5em 0; cursor: pointer; font-size:14px} 
+
+.ui-dialog-buttonpane button:hover{   
+    /*background: #e54040;*/
+    background: #86BBFF;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+border: 0;
+background: #1F96F7;
+font-weight: bold;
+color: #eeeeee;
+}
+.ui-dialog label {
+
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    font-size: 16px;
+    font-weight: bold;
+}

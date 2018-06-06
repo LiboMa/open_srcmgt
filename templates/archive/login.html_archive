@@ -1,0 +1,28 @@
+$def with (msg=None)
+
+<script type="text/javascript" src="./static/js/login.js"></script>
+<script type="text/javascript" src="./static/mystyle.css"></script>
+<div class="login">
+  <div class="login-screen">
+    
+    <div class="app-title"><h1>Login</h1></div>
+    <div class="login-msg"><span id="msg">$msg</span></div>
+
+    <form class="form" role="form" method="POST" action="./login">
+      <div class="form-group control-group" style="form-group:{margin-bottom: 10px;}">
+        <div class="col-xs-4">
+          <input type="text" class="form-control login-field" name="username" value="" placeholder="username" id="login-name"></div>
+          <label class="login-field-icon fui-user" for="login-name"></label>
+      </div>
+   
+      <div class="form-group">
+        <div class="col-xs-4">
+          <input type="password" class="form-control" name="password" value="" placeholder="password" id="login-pass"></div>
+          <label class="login-field-icon fui-lock" for="login-pass"></label>
+      </div>
+      <button class="btn btn-primary">login</button>
+    </form>
+  </div>
+
+</div>
+

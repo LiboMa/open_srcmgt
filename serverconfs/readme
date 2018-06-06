@@ -1,0 +1,12 @@
+
+#
+# Configure with spwan-fcgi for nginx
+# 2014.5.15, by Ma Libo
+
+We need to follow these steps below:
+
+1. Config nginx file into nginx.conf or related files for nginx
+2. Config the project init file init_nginx.py
+3. Startup init_cgi.sh start|stop
+4. Nginx -s reload
+

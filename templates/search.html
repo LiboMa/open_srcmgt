@@ -1,0 +1,9 @@
+$def with(entries,status=False,host=False)
+    
+    $if status:
+        <div id="adddiv"></div>
+    $:render_ori.js_table_editor(entries,status)
+
+
+
+

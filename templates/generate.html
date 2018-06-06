@@ -1,0 +1,9 @@
+$def with(form,password=None,title=None)
+
+$if title:
+    <font id="warn">$title</font>
+<div id=show_passwd>
+<form id="genpassword" action="" method="POST">
+  $:form.render()
+</form>
+</div>

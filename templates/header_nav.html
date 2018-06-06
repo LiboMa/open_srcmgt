@@ -1,0 +1,15 @@
+$def with ()
+
+<div class='header_nav'>
+<ul class="nav">
+$if session.login == 'no':
+    <li><a href='./login'>Login</a></li>
+$elif session.login =='yes':
+    <li style="font-size:11px"><a id="logout" href='./logout'>Logout</a></li>
+    <li style="font-size:11px"><a id="login-user" href=./password>$session.user_id ($session.user_alias)</a></li>
+ <li><a href='#'>Logs</a></li>
+ <li><a href='./wiki'>Wiki</a></li>
+ <li><a href='./'>Home</a></li>
+<ul>
+
+</div>

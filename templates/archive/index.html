@@ -1,0 +1,10 @@
+$def with(entries,status=False)
+
+$if status:
+
+  <div id="editdiv"></div>
+  <div id="adddiv"></div>
+
+
+$:render_ori.base_table(entries,status)
+

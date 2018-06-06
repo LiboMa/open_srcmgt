@@ -1,0 +1,36 @@
+$def with()
+
+$def search_box():
+      <form class="form-inline" role="form" name="search_form" method="get" action="./search" onsubmit="return validateForm()">
+        <div class="form-group"><input class="form-control" type='search' name="search_body" placeholder="search here..."></input></div>
+        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+       </form>
+
+<div class="well well-sm">
+  <p>Host Management</p>
+  <p><a href="./" class="btn btn-default btn-md btn-block">Vhosts</a></p>
+  $#<p><a href="./" class="btn btn-default btn-md btn-block">Host</a></p>
+</div>
+<div class="well well-sm">
+  <p>DataCenter Management</p>
+    <p><div class="btn-group btn-block">
+    <p><a href="./tags" class="btn btn-default btn-md btn-block">Cabling Process Label</a></p>
+    <p><a href="./capacity" class="btn btn-default btn-md btn-block">Capacity Process Label </a></p>
+          <button type="button" class="btn btn-default btn-md btn-block dropdown-toggle" data-toggle="dropdown">Devices<span class="caret">  </span></button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li><a href="./asset">Servers</a></li>
+            <li><a href="#">Switch/Routers</a></li>
+            <li><a href="#">Storage</a></li>
+            <li><a class="btn btn-default disabled" href="#">Patch Panel</a></li>
+            <li><a class="btn btn-default disabled" href="#">Rack Layout</a></li>
+          </ul>
+        </div></p>
+
+</div>
+$#<div class="well well-sm">
+$#  <p><a href="./gen_password">Random password</a></p>
+$#</div>
+<div class="well">
+     $:search_box()
+</div>
+

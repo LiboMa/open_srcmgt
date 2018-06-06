@@ -1,0 +1,75 @@
+$def with(entries,status)
+
+<script type="text/javascript" src="./static/js/edit.js"></script>
+
+<script type="text/javascript" src="./static/js/js_editor/jquery.js"></script>
+<script type="text/javascript" src="./static/js/js_editor/jquery.dataTables.js"></script>
+<script type="text/javascript" src="./static/js/table_style.js"></script>
+<script type="text/javascript" src="./static/js/jquery.formautofill.js"></script>
+<script type="text/javascript" src="./static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./static/js/jsedit.js"></script>
+<script type="text/javascript" src="./static/js/jsadd.js"></script>
+<link rel="stylesheet" type="text/css" href="./static/css/jquery.dataTables.css" />
+<link href="./static/css/jquery-ui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./static/css/dialog.css" />
+
+
+<div class="table-component" id="table-component">
+  <div class="table-main-container">
+
+    <div class="table-title">
+      <div class="table-title-header">
+         <div class="table-title-text">Asset Info</div>
+         <div class="table-title-toolbar">
+           <span class="table-toobar-item-icon"></span>
+           $if status:
+           <span class="table-toobar-item-text"><a id="a_host" href="./addasset">Add</a></span>
+</div>
+</div>
+</div>
+
+<div class="table-body">
+  <table class="table table-bordered table-hover table-striped" id='vhost_table'>
+  <tr>
+    <th class=edit_th id="logic_name">Logic Name</th>
+    <th class=edit_th id="device_type">Device Mode</th>
+    <th class=edit_th id="serial_number">SN</th>
+    <th class=edit_th id="hardware_info">HW info</th>
+    <th class=edit_th width="10%" id="layout">Rack Layout</th>
+    <th class=edit_th id="status">Status</th>
+    <th class=edit_th id="history">History</th>
+    <th class=edit_th id="updated_on">Updated On</th>
+$if status:
+    <th id="th_edit">EDIT</th>
+  </tr>
+
+$for entry in entries:
+  <tr class="edit_tr" id='row$entry.id'>
+    <td class="edit_td" id="td_logic_name_$entry.id"><span id="logic_name_$entry.id" class='text'>$entry.logic_name</span>
+    </td>
+    <td class="edit_td" id="td_device_type_$entry.id"><span id="device_type_$entry.id" class='text'>$entry.device_type</span>
+    </td>
+    <td class="edit_td" id="td_serial_number_$entry.id"><span id="serial_number_$entry.id" class='text'>$entry.serial_number</span>
+    </td>
+    <td class="edit_td" id="td_hardware_info_$entry.id"><span id="hardware_info_$entry.id" class='text'>$entry.hardware_info</span>
+    </td>
+    <td class="edit_td" id="td_layout_$entry.id"><span id="layout_$entry.id" class='text'>$entry.layout</span>
+    </td>
+    <td class="edit_td" id="td_status_$entry.id"><span id="status_$entry.id" class='text'>$entry.status</span>
+    </td>
+    <td class="edit_td" id="td_history_$entry.id"><span id="history_$entry.id" class='text'>$entry.history</a></span>
+    </td>
+    <td class="edit_td" id="td_updated_on_$entry.id"><span id="updated_on_$entry.id" class='text'>$entry.updated_on</span>
+    </td>
+    $if status:
+         <td id="edit_$entry.id">&nbsp;
+           <button class="btn btn-default" id="ebtn">Edit</button>&nbsp;
+          <a class='btn btn-default' href="#" id="button_del_$entry.id" onclick="old_delete_entry('$entry.id','./delasset','./asset?tpl=no');return false;">Delete</a>
+        </td>
+</tr>
+
+</table></div>
+
+  </div>
+</div>
+

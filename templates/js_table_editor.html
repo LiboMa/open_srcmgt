@@ -1,0 +1,143 @@
+$def with(entries,status=False,host=False)
+
+<script type="text/javascript" src="./static/js/js_editor/jquery.js"></script>
+<script type="text/javascript" src="./static/js/js_editor/jquery.dataTables.js"></script>
+<script type="text/javascript" src="./static/js/table_style.js"></script>
+<script type="text/javascript" src="./static/js/jquery.formautofill.js"></script>
+<script type="text/javascript" src="./static/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./static/js/jsedit.js"></script>
+<script type="text/javascript" src="./static/js/jsadd.js"></script>
+<link href="./static/css/jquery-ui.css" rel="stylesheet">
+
+<div class="table-component">
+    <div class="table-main-container">
+  
+      <div class="table-title">
+        <div class="table-title-header">
+           <div class="table-title-text"><h4>Virtual Host List</h4></div>
+           <div class="table-title-toolbar">
+             <span class="table-toobar-item-icon"></span>
+             $if status:
+             <span class="table-toobar-item-text"><button class="btn btn-info" data-toggle="modal" data-target="#myModal" id="newhost" onclick="add_dialog()"><span class="glyphicon glyphicon-plus"></span>&nbsp;New</button></span>
+             <span class="table-toobar-item-text"><button class="btn btn-default disabled" id="export" onclick="#"><span class="glyphicon glyphicon-export">&nbsp;Export</button></span>
+           </div>
+        </div>
+     </div>
+
+    <div class="table-body">
+          <table class="display table table-bordered table-hover table-striped info" id='DT' cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th class="btn-info" id="hostname">Hostname</th>
+                    <th class="btn-info" id="eth0">eth0</th>
+                    <th class="btn-info" id="eth1">eth1</th>
+                    <th class="btn-info" id="eth2">eth2</th>
+                    <th class="btn-info" id="os">OS</th>
+                    <th class="btn-info" id="hosted">Hosted</th>
+                    <th class="btn-info" id="project">Project</th>
+                    <th class="btn-info" id="owners">Owners</th>
+                    <th class="btn-info" id="dmz">DMZ</a></th>
+                    <th class="btn-info" id="datacenter">Data Center</a></th>
+                    <th class="btn-info" id="status">Status</a></th>
+                $if status:
+                    <th class="btn-info" id="th_edit">EDIT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                $for entry in entries:
+                  <tr class="edit_tr" id='$entry.id'>
+                    <td class="edit_td" id="td_hostname_$entry.id">$entry.hostname
+                    </td>
+                    <td class="edit_td" id="td_eth0_$entry.id">$entry.eth0
+                    </td>
+                    <td class="edit_td" id="td_eth1_$entry.id">$entry.eth1
+                    </td>
+                    <td class="edit_td" id="td_eth2_$entry.id">$entry.eth2
+                    </td>
+                    <td class="edit_td" id="td_os_$entry.id">$entry.os
+                    </td>
+                    <td class="edit_td" id="td_hosted_$entry.id">$entry.hosted
+                    </td>
+                    <td class="edit_td" id="td_project_$entry.id">$entry.project
+                    </td>
+                    <td class="edit_td" id="td_owners_$entry.id">$entry.owners
+                    </td>
+                    <td class="edit_td" id="td_dmz_$entry.id">$entry.dmz
+                    </td>
+                    <td class="edit_td" id="td_datacenter_$entry.id">$entry.datacenter
+                    </td>
+                    <td class="edit_td" id="td_status_$entry.id">$entry.status
+                    </td>
+                    $if status:
+                    <td id="edit_$entry.id">
+                      <button class="btn btn-default" data-toggle="modal" data-target="#myModal" id="ebtn"><span class="glyphicon glyphicon-pencil"></button>&nbsp;
+                        <button class="btn btn-default" id="dbtn"><span class="glyphicon glyphicon-remove"></button>
+                    </td>
+                  </tr>
+                </tbody>
+          </table>
+    </div>
+
+</div>
+</div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog" style="display:none" >
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Box</h4>
+        </div>
+            <div class="modal-body">
+
+                  <form class="form-horizontal" role="form" id="sform" method='POST'>
+                  <div class="form-group"><input class="form-control" name="id" type="hidden" /></input></div>
+                  <div class="form-group has-feedback"><label class="control-label col-sm-4" for="hostname">hostname</label><div class="col-sm-6"><input class="form-control" id="readinput" name="hostname" type="text" />
+                  </div></div>
+
+                  <div class="form-group"><label class="control-label col-sm-4" for="eth0">eth0</label><div class="col-sm-6"><input class="form-control" name="eth0" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="eth1">eth1</label><div class="col-sm-6"><input class="form-control" name="eth1" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="eth2">eth2</label><div class="col-sm-6"><input class="form-control" name="eth2" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="os">OS</label><div class="col-sm-6"><input class="form-control" name="os" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="hosted">hosted</label><div class="col-sm-6"><input class="form-control" name="hosted" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="project">project</label><div class="col-sm-6"><input class="form-control" name="project" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="owners">owners</label><div class="col-sm-6"><input class="form-control" name="owners" type="text" /></div></div>
+                  <div class="form-group"><label class="control-label col-sm-4" for="datacenter">datacenter</label><div class="col-sm-6"><input class="form-control" name="datacenter" type="text" /></div></div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-4" for="status">status</label>
+                      <div class="col-sm-6">
+                        <select class="form-control" name="status">
+                            <option value="pending">pending</option>
+                            <option value="online">online</option>
+                            <option value="offline">offline</option>
+                        </select>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-4" for="dmz">dmz</label>
+                      <div class="col-sm-6">
+                        <select class="col-sm-3 form-control" name="dmz">
+                            <option value="dmz3">DMZ3</option>
+                            <option value="dmz2">DMZ2</option>
+                            <option value="dmz1">DMZ1</option>
+                            <option value="inner">INNER</option>
+                        </select>
+                      </div>
+                  </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button id="bsubmit" type="submit" class="btn btn-info" data-dismiss="modal">OK</button>
+              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

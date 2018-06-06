@@ -1,0 +1,7 @@
+$def with(rst,type=None)
+
+$if type == 'json':
+    $rst
+$else:
+    $for i in rst:
+        $i.hostname,$i.eth0,$i.eth1,$i.gateway,$i.project,$i.hosted,$i.dmz,$i.datacenter,$i.status

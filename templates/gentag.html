@@ -1,0 +1,10 @@
+$def with(title=None)
+
+$if title:
+    <font id="warn">$title</font>
+    <div id=show_tag>
+      <form id="gen_tag" action="" method="POST">
+        <label for="tag_numbers">tag_numbers</label> <input name="tag_numbers" type='text'>
+        <button value="OK" class="button" type="submit">OK</button>
+        </form>
+      </div>

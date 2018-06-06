@@ -1,0 +1,24 @@
+$def with (msg=None)
+
+<script type="text/javascript" src="./static/js/login.js"></script>
+<div class="well login">
+    <div class="login-screen">
+      <div class="app-title"><h1>Login</h1></div>
+      <div class="alert login-msg"><span class="alert alert-danger" id="msg">$msg</span></div>
+      $#<div class="alert alert-danger"><span class="" id="msg">$msg</span></div>
+
+          <form role="form" method="POST" action="./login">
+            <div class="form-group">
+                <input type="text" class="form-control login-field com-sm-6" name="username" value="" placeholder="username" id="login-name">
+                <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+         
+            <div class="form-group">
+                <input type="password" class="form-control col-sm-6" style="margin-bottom: 10px" name="password" value="" placeholder="password" id="login-pass">
+                <label class="login-field-icon fui-lock" for="login-pass"></label>
+            </div>
+            <button class="btn btn-primary">login</button>
+          </form>
+    </div>
+</div>
+

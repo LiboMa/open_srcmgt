@@ -1,0 +1,8 @@
+$def with (form)
+<script type="text/javascript" src="./static/js/add.js"></script>
+<h2>New Server Record</h2>
+<form id='new_form' action="./new" method="post">
+  $:form.render()
+  <input id="new_save" type="submit" value="save" onclick="new_save('vhost')"/>
+</form>
+<BUTTON id="new_close" onclick="new_close()">close</BUTTON>

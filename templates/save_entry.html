@@ -1,0 +1,9 @@
+$def with(entry_id,form,title='Edit Host')
+<h3>$title</h3>
+<form id="save-form" method="post" action="./save/">
+  $:form.render()
+<input type="submit" onclick="save_entry('$form.d.id')" id="save_entry">
+$#<button id="edit_save" type='submit' value="save" onclick="save_entry('$entry_id')"></button>
+</form>
+<button id="b_delete" type='submit' onclick="delete_entry('$entry_id','$form.d.hostname')">delete</button>
+<button type='submit' onclick="save_cancel()">cancel</button>

@@ -1,0 +1,88 @@
+$def with(entries,status=False,host=False)
+
+<script type="text/javascript" src="./static/js/table_style.js"></script>
+<script type="text/javascript" src="./static/js/edit.js"></script>
+
+<div class="table-component">
+  <div class="table-main-container">
+
+    <div class="table-title">
+      <div class="table-title-header">
+         <div class="table-title-text">Virtual Host List</div>
+         <div class="table-title-toolbar">
+           <span class="table-toobar-item-icon"></span>
+           $#<span class="table-toobar-show_detail"><a id="show_detail" onclick="show_detail()" href="#">Detail</a></span>&nbsp;|&nbsp;
+           $if status:
+           <span class="table-toobar-item-text"><a id="a_host" onclick="new_form('vhost')" href="#">Add</a></span>
+           $#<span class="table-toobar-item-text"><a id="a_host" onclick="new_entry('vhost','vhost_table')" href="#">Add</a></span>&nbsp;|&nbsp;
+           $#<span class="table-toobar-item-text"><a id="d_host" onclick="del_selected('vhost')" href="#">Delete Selected</a></span>
+</div>
+</div>
+</div>
+
+<div class="table-body">
+  <table class="show_table" id='vhost_table'>
+  <tr>
+    <th class=edit_th width="10%" id="hostname">hostname</th>
+    <th class=edit_th width="10%" id="eth0">eth0</th>
+    <th class=edit_th id="eth1">eth1</th>
+    <th class=edit_th id="eth2">eth2</th>
+    <th class=edit_th id="gateway">gateway</th>
+    <th class=edit_th id="os">OS</th>
+    <th class=edit_th id="hosted">hosted</th>
+    <th class=edit_th width="15%" id="project">project</th>
+    <th class=edit_th id="dmz">DMZ</a></th>
+    <th class=edit_th id="datacenter">Data Center</a></th>
+    <th class=status_th id="status">Status</a></th>
+$if status:
+    <th id="th_edit">EDIT</th>
+  </tr>
+
+$for entry in entries:
+  <tr class="edit_tr" id='row$entry.id'>
+    <td class="edit_td" id="td_hostname_$entry.id"><span id="hostname_$entry.id" class='text'>$entry.hostname</span>
+      <input disabled='disabled' size="12px" class="editbox" id="submit_hostname_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_eth0_$entry.id"><span id="eth0_$entry.id" class='text'>$entry.eth0</span>
+      <input class="editbox" size="12px" id="submit_eth0_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_eth1_$entry.id"><span id="eth1_$entry.id" class='text'>$entry.eth1</span>
+      <input class="editbox" size="12px" id="submit_eth1_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_eth2_$entry.id"><span id="eth2_$entry.id" class='text'>$entry.eth2</span>
+      <input class="editbox" size="12px" id="submit_eth2_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_gateway_$entry.id"><span id="gateway_$entry.id" class='text'>$entry.gateway</span>
+      <input class="editbox" size="12px" id="submit_gateway_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_os_$entry.id"><span id="os_$entry.id" class='text'>$entry.os</span>
+      <input  class="editbox" size="12px" id="submit_os_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_hosted_$entry.id"><span id="hosted_$entry.id" class='text'><a href="./search?search_body=$entry.hosted">$entry.hosted</a></span>
+      <input class="editbox"  id="submit_hosted_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_project_$entry.id"><span id="project_$entry.id" class='text'>$entry.project</span>
+      <input class="editbox" size="12px" id="submit_project_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_dmz_$entry.id"><span id="dmz_$entry.id" class='text'><a href="./search?search_body=$entry.dmz">$entry.dmz</a></span>
+      <input class="editbox"  id="submit_dmz_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_datacenter_$entry.id"><span id="datacenter_$entry.id" class='text'><a href="./search?search_body=$entry.datacenter">$entry.datacenter</a></span>
+      <input class="editbox" size="12px" id="submit_datacenter_$entry.id" />
+    </td>
+    <td class="edit_td" id="td_status_$entry.id"><span id="status_$entry.id" class='text'><a href="./search?search_body=$entry.status">$entry.status</a></span>
+     <input class="editbox" size="12px" id="submit_status_$entry.id" />
+    </td>
+    $if status:
+         <td id="edit_$entry.id"><a class='text' href="#" id="button_edit_$entry.id" onclick="edit('$entry.id')">Edit</a>&nbsp;
+          <a class='text' href="#" id="button_del_$entry.id" onclick="old_delete_entry('$entry.id','delete','./ori_show');return false;">Delete</a>
+          <a class='editbox' href="#" id="btn_save_$entry.id" onclick="post_data('$entry.id','save','./ori_show')">OK</a>&nbsp;             
+          <a class="editbox" href="#" id="btn_cel_$entry.id">Cancel</a>
+        </td>
+</tr>
+
+</table></div>
+
+  </div>
+</div>
+

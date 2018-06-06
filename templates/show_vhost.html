@@ -1,0 +1,13 @@
+$def with(entries,status=False)
+
+$if status:
+ $#<div id="ct2nav">
+  $#<a href="./">Export CVS</a> ||
+  $#<a id="a_hosts" onclick="new_forms()" href="#">Import CSV</a> ||
+  $#<a id="a_host" onclick="new_form('vhost')" href="#">Add</a> 
+  $#</div>
+  $#<div id="editdiv"></div>
+  $#<div id="adddiv"></div>
+<a href="./detail">full view</a>
+$:render_ori.js_table_editor(entries,status)
+
