@@ -1,0 +1,179 @@
+-- MySQL dump 10.13  Distrib 5.7.22, for Linux (x86_64)
+--
+-- Host: localhost    Database: itvwdb
+-- ------------------------------------------------------
+-- Server version	5.7.22-0ubuntu0.16.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `asset`
+--
+
+DROP TABLE IF EXISTS `asset`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `asset` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `logic_name` varchar(255) NOT NULL,
+  `device_type` varchar(255) NOT NULL,
+  `serial_number` varchar(10) NOT NULL,
+  `hardware_info` text,
+  `layout` varchar(255) DEFAULT NULL,
+  `status` varchar(30) DEFAULT NULL,
+  `history` text,
+  `updated_on` datetime DEFAULT NULL,
+  `comment_1` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cabling_info`
+--
+
+DROP TABLE IF EXISTS `cabling_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cabling_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `logic_device_name` varchar(255) NOT NULL,
+  `physical_location` varchar(255) NOT NULL,
+  `mac_addr` varchar(22) DEFAULT NULL,
+  `switch` varchar(255) NOT NULL,
+  `interface` varchar(255) NOT NULL,
+  `port_mode_speed` varchar(255) NOT NULL,
+  `functionality` varchar(255) NOT NULL,
+  `vlan_id` varchar(255) NOT NULL,
+  `FQDN` varchar(255) NOT NULL,
+  `ip_addr` varchar(255) NOT NULL,
+  `rack_location` varchar(255) DEFAULT NULL,
+  `server_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `interface` (`interface`,`FQDN`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `capacity_tags`
+--
+
+DROP TABLE IF EXISTS `capacity_tags`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `capacity_tags` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tagname` varchar(10) DEFAULT NULL,
+  `assignedby` varchar(10) NOT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `comment` text,
+  `update_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `security_audit`
+--
+
+DROP TABLE IF EXISTS `security_audit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `security_audit` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `server_name` varchar(20) NOT NULL,
+  `check_point` varchar(100) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `messages` text,
+  `date_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=811 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sessions` (
+  `session_id` char(128) NOT NULL,
+  `atime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `data` text,
+  UNIQUE KEY `session_id` (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'AUTO_IMCREMENT',
+  `username` varchar(50) NOT NULL DEFAULT '',
+  `password` varchar(50) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `log_on` datetime DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `comment` text,
+  `alias` varchar(50) DEFAULT NULL,
+  `role` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `vserver_info`
+--
+
+DROP TABLE IF EXISTS `vserver_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vserver_info` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `hostname` varchar(100) NOT NULL,
+  `eth0` varchar(20) NOT NULL,
+  `eth1` varchar(20) NOT NULL,
+  `gateway` varchar(20) NOT NULL,
+  `project` varchar(50) NOT NULL,
+  `hosted` varchar(20) DEFAULT NULL,
+  `dmz` varchar(5) DEFAULT NULL,
+  `datacenter` varchar(10) DEFAULT NULL,
+  `updated_on` datetime NOT NULL,
+  `eth0_vlan` varchar(20) DEFAULT NULL,
+  `eth1_vlan` varchar(20) DEFAULT NULL,
+  `type` varchar(5) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `eth2` varchar(20) DEFAULT NULL,
+  `os` varchar(50) DEFAULT NULL,
+  `launchday` datetime DEFAULT NULL,
+  `owners` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hostname` (`hostname`)
+) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-06-06 11:43:41
